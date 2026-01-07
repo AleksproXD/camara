@@ -1,8 +1,9 @@
-import { View, SafeAreaView } from "react-native";
+import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import * as MediaLibrary from "expo-media-library";
-import * as FileSystem from "expo-file-system";
+import * as FileSystem from "expo-file-system/legacy";
 import { PhotoCard } from "@/components/organisms/PhotoCard";
 import { HeaderBar } from "@/components/organisms/HeaderBar";
 import { SwipeInstructions } from "@/components/molecules/SwipeInstructions";
@@ -22,10 +23,19 @@ export default function PhotoDecisionScreen() {
 
     try {
       if (direction === "save") {
-        await MediaLibrary.saveToLibraryAsync(photoUri);
+        // Pedir permisos y guardar en galería
+        const { status } = await MediaLibrary.requestPermissionsAsync();
+        
+        if (status === "granted") {
+          await MediaLibrary.saveToLibraryAsync(photoUri);
+        } else {
+          console.log("Permiso denegado para guardar en galería");
+        }
       } else {
+        // Solo eliminar archivo temporal
         await FileSystem.deleteAsync(photoUri, { idempotent: true });
       }
+      
       setTimeout(() => {
         router.back();
       }, 1000);
@@ -40,7 +50,7 @@ export default function PhotoDecisionScreen() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-slate-900">
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#0f172a' }} edges={['top', 'bottom']}>
       <HeaderBar
         title="Decide el destino"
         onBack={() => router.back()}
@@ -54,7 +64,7 @@ export default function PhotoDecisionScreen() {
       <View className="px-6 pb-8">
         <SwipeInstructions
           isDarkMode
-          customMessage="Desliza hacia la izquierda para eliminarla o hacia la derecha para guardarla en tu galería"
+          customMessage="Desliza hacia la izquierda para eliminarla o hacia la derecha para guardarla en la galería de tu celular"
         />
       </View>
     </SafeAreaView>
