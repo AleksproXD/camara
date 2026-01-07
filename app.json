@@ -12,8 +12,8 @@
       "supportsTablet": true,
       "infoPlist": {
         "NSCameraUsageDescription": "Esta app necesita acceso a la cámara para tomar fotos.",
-        "NSPhotoLibraryUsageDescription": "Esta app necesita acceso a tu galería para guardar fotos.",
-        "NSPhotoLibraryAddUsageDescription": "Esta app necesita permiso para guardar fotos en tu galería."
+        "NSPhotoLibraryUsageDescription": "Esta app necesita acceso a la galería para guardar y mostrar fotos.",
+        "NSPhotoLibraryAddUsageDescription": "Esta app necesita acceso para guardar las fotos que tomes."
       }
     },
     "android": {
@@ -23,13 +23,14 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false,
       "permissions": [
-        "CAMERA",
-        "READ_MEDIA_IMAGES",
-        "WRITE_EXTERNAL_STORAGE"
-      ]
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.READ_MEDIA_IMAGES"
+      ],
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
     },
     "web": {
       "output": "static",
@@ -40,14 +41,14 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Permitir acceso a la cámara"
+          "cameraPermission": "Permite a $(PRODUCT_NAME) acceder a tu cámara"
         }
       ],
       [
         "expo-media-library",
         {
-          "photosPermission": "Permitir acceso a la galería",
-          "savePhotosPermission": "Permitir guardar fotos"
+          "photosPermission": "Permite a $(PRODUCT_NAME) acceder a tus fotos",
+          "savePhotosPermission": "Permite a $(PRODUCT_NAME) guardar fotos"
         }
       ],
       [

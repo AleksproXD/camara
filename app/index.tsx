@@ -1,28 +1,28 @@
 import { View, Text } from "react-native";
-import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { MenuButton } from "../components/MenuButton";
-import { InfoCard } from "../components/InfoCard";
+import { MenuButton } from "@/components/molecules/MenuButton";
+import { InfoCard } from "@/components/molecules/InfoCard";
+import { useRouter } from "expo-router";
 
 export default function Index() {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-slate-50">
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#f8fafc' }} edges={['top', 'bottom']}>
       <View className="flex-1 px-6 pt-8">
         <View className="mb-8">
           <Text className="text-4xl font-bold text-slate-900 mb-2">
-            Cámara App
+            📸 Cámara App
           </Text>
           <Text className="text-lg text-slate-600">
-            Toma fotos y decide si guardarlas
+            Captura y organiza tus fotos
           </Text>
         </View>
 
         <View className="mb-6">
           <InfoCard 
             icon="information-circle" 
-            message="Toma una foto, deslízala a la derecha para guardar en tu galería o a la izquierda para descartarla."
+            message="Toma fotos, clasifícalas deslizándolas y revisa tu galería."
           />
         </View>
 
@@ -34,10 +34,10 @@ export default function Index() {
         />
 
         <MenuButton
-          icon="images"
-          title="Demo: Deslizar Fotos"
-          description="Ejemplo interactivo tipo Tinder"
-          onPress={() => router.push("/swipe-demo")}
+          icon="folder-open"
+          title="Galería"
+          description="Ver todas tus fotos"
+          onPress={() => router.push("/gallery")}
         />
       </View>
     </SafeAreaView>
