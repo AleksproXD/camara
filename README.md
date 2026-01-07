@@ -1,53 +1,61 @@
-> Edited for use in IDX on 07/09/12
+# 📸 Snap Swipe App
 
-# Welcome to your Expo app 👋
+Una aplicación móvil intuitiva para capturar fotos y decidir su destino con un simple gesto de deslizamiento. Construida con React Native, Expo y TypeScript.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-## Get started
+## ✨ Características
 
-#### Android
+- 📷 **Captura de fotos** con cámara frontal y trasera
+- 👆 **Gestos intuitivos** tipo Tinder para tomar decisiones
+- 💾 **Guarda directamente** en la galería del dispositivo
+- 🗑️ **Elimina fotos** no deseadas con un deslizamiento
+- 🎨 **Interfaz moderna** con animaciones fluidas
+- 🌓 **Modo oscuro** en pantallas de decisión
+- 📱 **Responsive** y optimizado para Android
 
-Android previews are defined as a `workspace.onStart` hook and started as a vscode task when the workspace is opened/started.
+## 🎯 ¿Cómo funciona?
 
-Note, if you can't find the task, either:
-- Rebuild the environment (using command palette: `IDX: Rebuild Environment`), or
-- Run `npm run android -- --tunnel` command manually run android and see the output in your terminal. The device should pick up this new command and switch to start displaying the output from it.
+1. **Toma una foto** usando la cámara integrada
+2. **Desliza hacia la derecha (→)** para guardarla en tu galería
+3. **Desliza hacia la izquierda (←)** para eliminarla
+4. **¡Listo!** Revisa tus fotos en la app Galería de tu celular
 
-In the output of this command/task, you'll find options to open the app in a
+## 🏗️ Arquitectura
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+El proyecto sigue principios de **Atomic Design** para una mejor organización y reutilización de componentes:
 
-You'll also find options to open the app's developer menu, reload the app, and more.
-
-#### Web
-
-Web previews will be started and managred automatically. Use the toolbar to manually refresh.
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+📦 snap-swipe-app/
+├── 📂 app/                    # Pantallas principales (Expo Router)
+│   ├── _layout.tsx           # Layout raíz
+│   ├── index.tsx             # Menú principal
+│   ├── camera.tsx            # Pantalla de cámara
+│   └── photo-decision.tsx    # Decisión de foto
+├── 📂 components/
+│   ├── 📂 atoms/             # Componentes básicos
+│   │   ├── IconButton.tsx
+│   │   └── ActionButton.tsx
+│   ├── 📂 molecules/         # Componentes combinados
+│   │   ├── InfoCard.tsx
+│   │   ├── MenuButton.tsx
+│   │   ├── SwipeStamp.tsx
+│   │   └── SwipeInstructions.tsx
+│   └── 📂 organisms/         # Componentes complejos
+│       ├── CameraControls.tsx
+│       ├── PhotoCard.tsx
+│       ├── PermissionScreen.tsx
+│       ├── HeaderBar.tsx
+│       ├── EmptyState.tsx
+│       └── ProcessingOverlay.tsx
+├── 📂 assets/                # Imágenes e iconos
+├── app.json                  # Configuración de Expo
+├── package.json
+└── tsconfig.json
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+https://github.com/user-attachments/assets/cc46fa1f-d0d2-4314-9e17-137aac11b9a6
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
